@@ -1,11 +1,14 @@
 
-function setReferralCookie(exdays) {
+function setCookie(exdays, name) {
   var d = new Date();
   var url = new URL(window.location.href);
-  var referer_username = url.searchParams.get("ref_username");
+  var value = url.searchParams.get(name);
   d.setTime(d.getTime() + (exdays*24*60*60*1000));
   var expires = "expires="+ d.toUTCString();
-  document.cookie = "ref_username=" + referer_username + ";" + expires + ";domain=likeup.me";
+  document.cookie = name + "=" + value + ";" + expires + ";domain=likeup.me";
 }
 
-setReferralCookie(14)
+setCookie(30, "ref_username")
+setCookie(30, "utm_source")
+setCookie(30, "utm_campaign")
+setCookie(30, "utm_medium")
